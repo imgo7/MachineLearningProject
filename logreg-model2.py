@@ -17,6 +17,9 @@ from sklearn.linear_model import LogisticRegression
 # MATLAB library to plot the data
 import matplotlib.pyplot as plt
 
+# For Confusion Matrix and Precision
+from sklearn import metrics
+
 # Add function to classify Education Level
 # Target Variable column produced 
 # +1 if over 50%, -1 if under 50%
@@ -135,3 +138,13 @@ plt.ylabel('Single Motor Car in Household')
 plt.title('Education Level')
 
 plt.show()
+
+# Confusion matrix produced 
+confusion_matrix = metrics.confusion_matrix(test_y,predict_y)
+# Print to terminal
+print("Confusion Matrix: ")
+print(confusion_matrix)
+
+# Measure precision and print to terminal
+print("Prediction precision: ")
+print(metrics.precision_score(test_y,predict_y))

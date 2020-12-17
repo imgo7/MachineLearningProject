@@ -17,7 +17,7 @@ from sklearn.linear_model import LogisticRegression
 # MATLAB library to plot the data
 import matplotlib.pyplot as plt
 
-# Confusion Matrix
+# For Confusion Matrix and Precision
 from sklearn import metrics
 
 # Add function to classify Broadband
