@@ -82,7 +82,7 @@ for x in range(18489):
 
 # Add new column with +1 and -1 markers 
 dataset_1['Internet Broadband - target variable'] = tv_list
-# Drop last row - with NaN
+# Drop last row - empty with NaN
 dataset_1 = dataset_1.drop([dataset_1.index[18488]])
 # Includes new column and drops last row 
 print(dataset_1)

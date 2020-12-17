@@ -11,6 +11,8 @@ import numpy as npy
 
 # Get training and test data from the dataset
 from sklearn.model_selection import train_test_split
+# Function to produce a Logistic Regresstion classifier
+from sklearn.linear_model import LogisticRegression
 
 # Add function to classify Education Level
 # Target Variable column produced 
@@ -74,7 +76,9 @@ for x in range(18489):
 
 # Add new column with +1 and -1 markers 
 dataset_2['Education Level - target variable'] = tv_list
-# Includes new column
+# Drop last row - NaN
+dataset_2 = dataset_2.drop([dataset_2.index[18488]])
+# Includes new column and drops the last row
 print(dataset_2)
 
 # Both features put into one column
@@ -83,7 +87,7 @@ features = ['Internet Access Broadband','Single Motor Car in Household']
 features_x = dataset_2[features]
 
 # The target variable +1 -1 only
-target_variable_y = dataset_2['Education Level']
+target_variable_y = dataset_2['Education Level - target variable']
 
 # print(features_x)
 # print(target_variable_y)
@@ -97,8 +101,11 @@ training_x, test_x, training_y, test_y = train_test_split(features_x,target_vari
 # print("Train Y",training_y)
 # print("Test Y",test_y)
 
-    
+# Logistic Regression model 
+logistic_regression = LogisticRegression()
+# Fit with the training data 
+logistic_regression.fit(training_x,training_y)
 
-
-
-
+# Generate predictions using test values 
+predict_y = logistic_regression.predict(test_x)
+print("Predictions: ", predict_y)
