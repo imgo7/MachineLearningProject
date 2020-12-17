@@ -123,7 +123,7 @@ print("Predictions: ", predict_y)
 # figure = plt.figure()
 
 # Different markers for +1 and -1
-mark = ["x","o"]
+mark = ["+","o"]
 test_x = npy.array(test_x)
 for i in range(len(test_x)):
     

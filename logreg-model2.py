@@ -14,6 +14,9 @@ from sklearn.model_selection import train_test_split
 # Function to produce a Logistic Regresstion classifier
 from sklearn.linear_model import LogisticRegression
 
+# MATLAB library to plot the data
+import matplotlib.pyplot as plt
+
 # Add function to classify Education Level
 # Target Variable column produced 
 # +1 if over 50%, -1 if under 50%
@@ -109,3 +112,26 @@ logistic_regression.fit(training_x,training_y)
 # Generate predictions using test values 
 predict_y = logistic_regression.predict(test_x)
 print("Predictions: ", predict_y)
+
+# Plot the logistic regression
+# figure = plt.figure()
+
+# Different markers for +1 and -1
+mark = ["+","o"]
+test_x = npy.array(test_x)
+for i in range(len(test_x)):
+    
+    if predict_y[i] == 1:
+        m = mark[0]
+    if predict_y[i] == -1:
+        m = mark[1]
+
+        # Scatter plot - column 0 (feature 1 = PC in Household) 
+        # column 1 (feature 2 = Education Level)
+        plt.scatter(test_x[[i],0], test_x[[i],1], marker =m, color = 'tomato')
+
+plt.xlabel('Internet Access Broadband')
+plt.ylabel('Single Motor Car in Household')
+plt.title('Education Level')
+
+plt.show()
