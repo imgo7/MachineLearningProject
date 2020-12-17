@@ -11,6 +11,8 @@ import numpy as npy
 
 # To get training and test data from the dataset
 from sklearn.model_selection import train_test_split
+# Function to produce a Logistic Regresstion classifier
+from sklearn.linear_model import LogisticRegression
 
 # Add function to classify Broadband
 # Target Variable column produced 
@@ -80,7 +82,9 @@ for x in range(18489):
 
 # Add new column with +1 and -1 markers 
 dataset_1['Internet Broadband - target variable'] = tv_list
-# Includes new column
+# Drop last row - with NaN
+dataset_1 = dataset_1.drop([dataset_1.index[18488]])
+# Includes new column and drops last row 
 print(dataset_1)
 
 # All features put into one column
@@ -102,6 +106,15 @@ training_x, test_x, training_y, test_y = train_test_split(features_x,target_vari
 # print("Test X",test_x)
 # print("Train Y",training_y)
 # print("Test Y",test_y)
+
+# Logistic Regression model 
+logistic_regression = LogisticRegression()
+# Fit with the training data 
+logistic_regression.fit(training_x,training_y)
+
+# Generate predictions using test values 
+predict_y = logistic_regression.predict(test_x)
+print("Predictions: ", predict_y)
 
     
 
