@@ -58,8 +58,6 @@ dataset_1 = dataset_1[['Perc_Households_With_Personal_Computer_Yes_2011','Perc_P
 dataset_1 = dataset_1.rename(columns={'Perc_Households_With_Personal_Computer_Yes_2011':'PC in Household','Perc_Persons_15_And_Over_Edu_Not_Ceased_Total_At_School_University_2011':'Education Level','Perc_Households_With_Internet_Access_Broadband_2011':'Internet Access Broadband' })
 print(dataset_1)
 
-# column = dataset_1['Internet Access Broadband']
-
 # Add list to store the target variables 
 tv_list = []
 

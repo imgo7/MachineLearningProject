@@ -9,6 +9,22 @@ import pandas as pds
 # Import numpy for maths functions 
 import numpy as npy 
 
+# Add function to classify Education Level
+# Target Variable column produced 
+# +1 if over 50%, -1 if under 50%
+# Input - education level percentage
+def assign_tv(edu_level_perc):
+
+    # +1 if over 50%
+    if edu_level_perc >= 50.00:
+        return 1
+    # -1 if under 50%
+    elif edu_level_perc <= 50.00:
+        return -1
+    # invalid number
+    else:
+        return 0
+
 # Read in the data for the second model 
 # Feature 1 = % of Households with Broadband Internet Access
 # Feature 2 = % of Households with a Single Motor Car (read in - opposite order)
@@ -35,3 +51,27 @@ print(dataset_2)
 # Rename columns
 dataset_2 = dataset_2.rename(columns={'Perc_Households_With_Internet_Access_Broadband_2011':'Internet Access Broadband','Perc_Households_With_Cars_One_Motor_Car_2011':'Single Motor Car in Household','Perc_Persons_15_And_Over_Edu_Not_Ceased_Total_At_School_University_2011':'Education Level' })
 print(dataset_2)
+
+# Add list to store the target variables 
+tv_list = []
+
+
+# Assign +1 or -1 for the target variable 
+for x in range(18489):
+    # select each value in Education Level
+    target_var = dataset_2['Education Level'][x]
+    # print("Column:", target_var)
+
+    # send to function
+    # to get +1 or -1
+    target_value = assign_tv(target_var)
+
+    # Add the value to a list 
+    tv_list.append(target_value)
+
+# Add new column with +1 and -1 markers 
+dataset_2['Education Level - target variable'] = tv_list
+# Includes new column
+print(dataset_2)
+
+
