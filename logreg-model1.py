@@ -9,6 +9,9 @@ import pandas as pds
 # Import numpy for maths functions 
 import numpy as npy 
 
+# To get training and test data from the dataset
+from sklearn.model_selection import train_test_split
+
 # Add function to classify Broadband
 # Target Variable column produced 
 # +1 if over 50%, -1 if under 50%
@@ -79,6 +82,26 @@ for x in range(18489):
 dataset_1['Internet Broadband - target variable'] = tv_list
 # Includes new column
 print(dataset_1)
+
+# All features put into one column
+features = ['PC in Household','Education Level']
+# From dataset
+features_x = dataset_1[features]
+
+# Target variable +1 -1 only
+target_variable_y = dataset_1['Internet Broadband - target variable']
+
+# print(features_x)
+# print(target_variable_y)
+
+# Training and test data 
+# 80% Training data, 20% Test data
+training_x, test_x, training_y, test_y = train_test_split(features_x,target_variable_y,test_size=0.2)
+# Print to see output 
+# print("Train X",training_x)
+# print("Test X",test_x)
+# print("Train Y",training_y)
+# print("Test Y",test_y)
 
     
 
