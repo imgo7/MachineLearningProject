@@ -190,10 +190,10 @@ plt.title('Internet Broadband Access')
 plt.show()
 
 # Confusion matrix produced for baseline
-confusion_matrix = metrics.confusion_matrix(test_y,dummy_predict_y)
+dummy_confusion_matrix = metrics.confusion_matrix(test_y,dummy_predict_y)
 # Print to terminal
 print("Baseline Confusion Matrix: ")
-print(confusion_matrix)
+print(dummy_confusion_matrix)
 
 # Measure precision for baseline and print to terminal
 print("Baseline Prediction precision: ")

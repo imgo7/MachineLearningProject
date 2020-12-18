@@ -20,6 +20,9 @@ import matplotlib.pyplot as plt
 # For Confusion Matrix and Precision
 from sklearn import metrics
 
+# For a baseline classifier 
+from sklearn.dummy import DummyClassifier
+
 # Add function to classify Education Level
 # Target Variable column produced 
 # +1 if over 50%, -1 if under 50%
@@ -148,3 +151,44 @@ print(confusion_matrix)
 # Measure precision and print to terminal
 print("Prediction precision: ")
 print(metrics.precision_score(test_y,predict_y))
+
+
+# Baseline model - for comparison
+# Uniform strategy - random predictions at all times
+dummy_classifier = DummyClassifier(strategy='uniform')
+
+# Train the model with the training data
+dummy_classifier.fit(training_x,training_y)
+
+# Produce predictions 
+dummy_predict_y = dummy_classifier.predict(test_x)
+
+# Different markers for +1 and -1
+mark = ["+","o"]
+test_x = npy.array(test_x)
+for i in range(len(test_x)):
+    
+    if dummy_predict_y[i] == 1:
+        m = mark[0]
+    if dummy_predict_y[i] == -1:
+        m = mark[1]
+
+    # Scatter plot - column 0 (feature 1 = PC in Household) 
+    # column 1 (feature 2 = Education Level)
+    plt.scatter(test_x[[i],0], test_x[[i],1], marker =m, color = 'firebrick')
+
+plt.xlabel('Internet Access Broadband')
+plt.ylabel('Single Motor Car in Household')
+plt.title('Education Level')
+
+plt.show()
+
+# Confusion matrix produced 
+dummy_confusion_matrix = metrics.confusion_matrix(test_y,dummy_predict_y)
+# Print to terminal
+print("Baseline Confusion Matrix: ")
+print(dummy_confusion_matrix)
+
+# Measure precision and print to terminal
+print("Baseline Prediction precision: ")
+print(metrics.precision_score(test_y,dummy_predict_y))
