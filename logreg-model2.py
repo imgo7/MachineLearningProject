@@ -129,9 +129,9 @@ for i in range(len(test_x)):
     if predict_y[i] == -1:
         m = mark[1]
 
-        # Scatter plot - column 0 (feature 1 = PC in Household) 
-        # column 1 (feature 2 = Education Level)
-        plt.scatter(test_x[[i],0], test_x[[i],1], marker =m, color = 'tomato')
+    # Scatter plot - column 0 (feature 1 = PC in Household) 
+    # column 1 (feature 2 = Education Level)
+    plt.scatter(test_x[[i],0], test_x[[i],1], marker =m, color = 'tomato')
 
 plt.xlabel('Internet Access Broadband')
 plt.ylabel('Single Motor Car in Household')
