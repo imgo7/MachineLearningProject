@@ -23,6 +23,9 @@ from sklearn import metrics
 # For a baseline classifier 
 from sklearn.dummy import DummyClassifier
 
+# For hyperparameter selection
+from sklearn.model_selection import GridSearchCV
+
 # Add function to classify Broadband
 # Target Variable column produced 
 # +1 if over 50%, -1 if under 50%
@@ -117,7 +120,30 @@ print("Test X",test_x)
 # print("Test Y",test_y)
 
 # Logistic Regression model 
-logistic_regression = LogisticRegression()
+# Liblinear penalty so both l1 and l2 can be tested
+log_regr = LogisticRegression(solver='liblinear')
+
+# Select optimal C and penalty hyperparameters
+c_list = [0.0001,0.01,1,10,100]
+penalty_list = ['l1','l2']
+# Hyperparamter - create a key-value pair (dict)
+hyperparams = dict(C = c_list, penalty = penalty_list)
+
+# Grid Search with cross validation folds = 5
+grid_search = GridSearchCV(log_regr, hyperparams,cv=5)
+# To get the optimal logistic regression
+optimal_model = grid_search.fit(training_x,training_y)
+# Print the optimal hyperparameters
+optimal_penalty = grid_search.best_estimator_.get_params()['penalty']
+optimal_c = grid_search.best_estimator_.get_params()['C']
+print("Optimal Penalty: ", optimal_penalty)
+print("Optimal C", optimal_c)
+
+
+# Logistic Regression model 
+# Given optimal penalty and optimal C, liblinear solver
+logistic_regression = LogisticRegression(penalty=optimal_penalty, C = optimal_c, solver='liblinear')
+
 # Fit with the training data 
 logistic_regression.fit(training_x,training_y)
 
