@@ -136,20 +136,21 @@ optimal_model = grid_search.fit(training_x,training_y)
 # Print the optimal hyperparameters
 optimal_penalty = grid_search.best_estimator_.get_params()['penalty']
 optimal_c = grid_search.best_estimator_.get_params()['C']
-print("Optimal Penalty: ", optimal_penalty)
-print("Optimal C", optimal_c)
+print("Model 1 - Optimal Penalty: ", optimal_penalty)
+print("Model 1 - Optimal C", optimal_c)
 
 
 # Logistic Regression model 
 # Given optimal penalty and optimal C, liblinear solver
-logistic_regression = LogisticRegression(penalty=optimal_penalty, C = optimal_c, solver='liblinear')
+# Increase number of iterations to solve liblinear error
+logistic_regression = LogisticRegression(penalty=optimal_penalty, C = optimal_c, solver='liblinear',max_iter=500)
 
 # Fit with the training data 
 logistic_regression.fit(training_x,training_y)
 
 # Generate predictions using test values 
 predict_y = logistic_regression.predict(test_x)
-print("Predictions: ", predict_y)
+print("Model 1 - Predictions: ", predict_y)
 
 # Plot the logistic regression
 # figure = plt.figure()
@@ -170,18 +171,18 @@ for i in range(len(test_x)):
 
 plt.xlabel('PC in Household')
 plt.ylabel('Education Level')
-plt.title('Internet Broadband Access')
+plt.title('Model 1 - Internet Broadband Access')
 
 plt.show()
 
 # Confusion matrix produced 
 confusion_matrix = metrics.confusion_matrix(test_y,predict_y)
 # Print to terminal
-print("Confusion Matrix: ")
+print("Model 1 - Confusion Matrix: ")
 print(confusion_matrix)
 
 # Measure precision and print to terminal
-print("Prediction precision: ")
+print("Model 1 - Prediction precision: ")
 print(metrics.precision_score(test_y,predict_y))
 
 
@@ -211,18 +212,18 @@ for i in range(len(test_x)):
 
 plt.xlabel('PC in Household')
 plt.ylabel('Education Level')
-plt.title('Internet Broadband Access')
+plt.title('Baseline Model 1 - Internet Broadband Access')
 
 plt.show()
 
 # Confusion matrix produced for baseline
 dummy_confusion_matrix = metrics.confusion_matrix(test_y,dummy_predict_y)
 # Print to terminal
-print("Baseline Confusion Matrix: ")
+print("Baseline Model 1 Confusion Matrix: ")
 print(dummy_confusion_matrix)
 
 # Measure precision for baseline and print to terminal
-print("Baseline Prediction precision: ")
+print("Baseline Model 1 Prediction precision: ")
 print(metrics.precision_score(test_y,dummy_predict_y))
 
 
