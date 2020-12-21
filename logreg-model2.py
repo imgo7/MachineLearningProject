@@ -156,16 +156,21 @@ for i in range(len(test_x)):
     
     if predict_y[i] == 1:
         m = mark[0]
+        l = '+1'
     if predict_y[i] == -1:
         m = mark[1]
+        l = '-1'
 
     # Scatter plot - column 0 (feature 1 = PC in Household) 
     # column 1 (feature 2 = Education Level)
-    plt.scatter(test_x[[i],0], test_x[[i],1], marker =m, color = 'tomato')
+    # Vary the label 
+    sctr = plt.scatter(test_x[[i],0], test_x[[i],1], marker =m, color = 'tomato',label=l)
 
 plt.xlabel('Internet Access Broadband')
 plt.ylabel('Single Motor Car in Household')
 plt.title('Model 2 - Education Level')
+# Legend 
+plt.legend(handles=[sctr])
 
 plt.show()
 
@@ -202,16 +207,20 @@ for i in range(len(test_x)):
     
     if dummy_predict_y[i] == 1:
         m = mark[0]
+        l = '+1'
     if dummy_predict_y[i] == -1:
         m = mark[1]
+        l = '-1'
 
     # Scatter plot - column 0 (feature 1 = PC in Household) 
     # column 1 (feature 2 = Education Level)
-    plt.scatter(test_x[[i],0], test_x[[i],1], marker =m, color = 'firebrick')
+    sctr = plt.scatter(test_x[[i],0], test_x[[i],1], marker =m, color = 'firebrick',label=l)
 
 plt.xlabel('Internet Access Broadband')
 plt.ylabel('Single Motor Car in Household')
 plt.title('Baseline Model 2 - Education Level')
+# Legend 
+plt.legend(handles=[sctr])
 
 plt.show()
 
