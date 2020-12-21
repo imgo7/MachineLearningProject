@@ -179,6 +179,11 @@ print(confusion_matrix)
 print("Model 2 - Prediction precision: ")
 print(metrics.precision_score(test_y,predict_y))
 
+# Add mean absolute error for the model
+print("Model 2 - Mean absolute error: ")
+# Mean absolute error - actual values, estimates
+print(metrics.mean_absolute_error(test_y,predict_y))
+
 
 # Baseline model - for comparison
 # Uniform strategy - random predictions at all times
@@ -219,3 +224,8 @@ print(dummy_confusion_matrix)
 # Measure precision and print to terminal
 print("Baseline Model 2 Prediction precision: ")
 print(metrics.precision_score(test_y,dummy_predict_y))
+
+# Add mean absolute error for the baseline model
+print("Baseline Model 2 Mean absolute error: ")
+# Mean absolute error - actual values, estimates
+print(metrics.mean_absolute_error(test_y,dummy_predict_y))
