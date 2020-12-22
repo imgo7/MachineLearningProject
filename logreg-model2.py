@@ -54,7 +54,7 @@ dataset_part1 = pds.read_csv('theme_15_small_areas-internet.csv',usecols=['Perc_
 print(dataset_part1)
 
 # Target Variable - Education Not Ceased
-dataset_part2 = pds.read_csv('theme_10_small_Areas-education.csv',usecols=['Perc_Persons_15_And_Over_Edu_Not_Ceased_Total_At_School_University_2011'])
+dataset_part2 = pds.read_csv('theme_10_small_areas-education.csv',usecols=['Perc_Persons_15_And_Over_Edu_Not_Ceased_Total_At_School_University_2011'])
 print(dataset_part2)
 
 # Combine into one dataset
@@ -75,7 +75,7 @@ tv_list = []
 
 
 # Assign +1 or -1 for the target variable 
-for x in range(18489):
+for x in range(len(dataset_2)):
     # select each value in Education Level
     target_var = dataset_2['Education Level'][x]
     # print("Column:", target_var)
@@ -89,9 +89,7 @@ for x in range(18489):
 
 # Add new column with +1 and -1 markers 
 dataset_2['Education Level - target variable'] = tv_list
-# Drop last row - NaN
-dataset_2 = dataset_2.drop([dataset_2.index[18488]])
-# Includes new column and drops the last row
+# Includes new column
 print(dataset_2)
 
 # Both features put into one column
